@@ -16,9 +16,7 @@
 <h3 align="left">Coding Activity</h3>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=heylong7&show_icons=true&theme=radical&include_all_commits=true&count_private=true&hide_rank=true" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://leetcard.jacoblin.cool/heylong7?theme=radical&site=cn&ext=heatmap" />
+  <img src="https://leetcard.jacoblin.cool/heylong7?theme=light&site=cn&ext=heatmap" />
 </p>
 
 <!-- Snake Code Contribution Map -->
