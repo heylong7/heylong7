@@ -2,14 +2,15 @@ name: Generate Snake
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # 每天自动更新
-  workflow_dispatch:       # 支持手动触发
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -17,11 +18,26 @@ jobs:
         with:
           github_user_name: heylong7
           outputs: |
-            output/github-contribution-grid-snake.svg
-            output/github-contribution-grid-snake-dark.svg?palette=github-dark
+            svgs/github-contribution-grid-snake.svg
+            svgs/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      - uses: peaceiris/actions-gh-pages@v4
-        with:
-          publish_branch: output
-          publish_dir: ./output
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to output branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Save generated SVGs to temp location
+          cp -r svgs /tmp/svgs
+          
+          # Create or switch to output branch and clean it
+          git fetch origin output 2>/dev/null || true
+          git checkout output 2>/dev/null || git checkout --orphan output
+          git rm -rf . 2>/dev/null || true
+          
+          # Copy SVGs into the branch root
+          cp /tmp/svgs/*.svg .
+          
+          # Commit and push
+          git add *.svg
+          git commit -m "Update snake contribution graph" --allow-empty
+          git push origin output --force
