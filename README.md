@@ -15,10 +15,6 @@
 
 <h3 align="left">Coding Activity</h3>
 
-<p align="center">
-  <img src="https://leetcard.jacoblin.cool/heylong7?theme=light&site=cn&ext=heatmap" />
-</p>
-
 <!-- Snake Code Contribution Map -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/heylong7/heylong7/output/github-contribution-grid-snake-dark.svg" />
